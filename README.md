@@ -13,14 +13,14 @@ A real-time messaging API with multi-channel support and comprehensive server-si
 **Server-Side**
 
 ```
-git clone 
-cd
+git clone https://github.com/fitri-hy/websocket-message-api-nodejs.git
+cd websocket-message-api-nodejs
 npm Install
 npm start
 ```
 
 **Client-Side**
 
-- Open Folder [Client-Side]
+- Open Folder (Client-Side)
 - Move to your Local Web Server Directory
 - Run and Open
