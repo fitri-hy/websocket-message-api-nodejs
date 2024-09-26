@@ -17,10 +17,25 @@ git clone https://github.com/fitri-hy/websocket-message-api-nodejs.git
 cd websocket-message-api-nodejs
 npm Install
 npm start
+open localhost:3000
 ```
 
 **Client-Side**
 
-- Open Folder (Client-Side)
+- Open Folder [Client-Side]
 - Move to your Local Web Server Directory
 - Run and Open
+
+## API Usage
+
+**API to retrieve Messages from All Channels**
+
+```
+ws://localhost:3000/?monitor=true
+```
+
+**API for Connecting to Server and Creating Channels**
+
+```
+ws://localhost:3000/api?channels={your_channel_name}
+```

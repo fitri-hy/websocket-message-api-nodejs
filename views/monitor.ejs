@@ -3,59 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Channel Monitoring</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        #messages {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow-y: scroll;
-            height: 400px;
-            border: 1px solid #ddd;
-        }
-        .message {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .channel {
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
+    <title>WebSocket Server</title>
+	<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>All Channel Monitoring</h1>
-    <div id="messages"></div>
+<body class="bg-white">
+	<div class="fixed z-10 w-full bg-blue-500 shadow-md text-white p-4">
+		<h2 class="text-center text-xl font-semibold">
+			Monitoring All Message
+		</h2>
+	</div>
+	<div id="messages" class="flex flex-col gap-2 px-4 pb-4 pt-20 h-screen overflow-y-auto"></div>
+	<script>
+		const ws = new WebSocket('ws://localhost:3000/?monitor=true');
 
-    <script>
-        const ws = new WebSocket('ws://localhost:3000/?monitor=true');
+		const messagesDiv = document.getElementById('messages');
 
-        const messagesDiv = document.getElementById('messages');
+		ws.onmessage = (event) => {
+			const data = JSON.parse(event.data);
+			const messageDiv = document.createElement('div');
 
-        ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message';
+			messageDiv.innerHTML = `
+				<div class="text-gray-700 inline-block">
+					<div class="flex gap-2 items-center">
+						<span class="font-semibold">
+							${data.sender}
+						</span>
+						<span class="block text-xs">
+							(${data.channel})
+						</span>
+					</div>
+					<div class="flex">
+						<div class="px-2 py-1 rounded-lg bg-neutral-200">
+							${data.message}
+						</div>
+					</div>
+				</div>`;
 
-            messageDiv.innerHTML = `<span class="channel">[Channel: ${data.channel}]</span> ${data.sender}: ${data.message}`;
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        };
+			messagesDiv.appendChild(messageDiv);
+			messagesDiv.scrollTop = messagesDiv.scrollHeight;
+		};
 
-        ws.onopen = () => {
-            console.log('Connected to monitoring WebSocket');
-        };
+		ws.onopen = () => {
+			console.log('Connected to monitoring WebSocket');
+		};
 
-        ws.onclose = () => {
-            console.log('Disconnected from monitoring WebSocket');
-        };
-    </script>
+		ws.onclose = () => {
+			console.log('Disconnected from monitoring WebSocket');
+		};
+	</script>
 </body>
 </html>

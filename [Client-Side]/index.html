@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Client</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        #messages { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll; }
-        .message { margin: 5px 0; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>WebSocket Client</h1>
-    <input type="text" id="username" placeholder="Enter your name" />
-    <div id="messages"></div>
-    <input type="text" id="messageInput" placeholder="Type a message" />
-    <button id="sendButton">Send</button>
+<body class="bg-white">
+    <div class="fixed z-10 w-full bg-blue-500 shadow-md text-white p-4">
+        <h2 class="text-center text-xl font-semibold">Client Message</h2>
+    </div>
+    
+    <div id="messages" class="flex flex-col gap-2 px-4 py-16 h-screen overflow-y-auto bg-gray-100"></div>
+    
+    <footer class="w-full fixed z-50 bottom-0 px-4 py-2 bg-white">
+        <div class="container flex gap-2 items-center m-auto">
+            <input type="text" id="username" placeholder="Enter Name" class="p-2 rounded border max-w-[150px]" />
+            <input type="text" id="messageInput" placeholder="Type a Message" class="w-full p-2 rounded border" />
+            <button id="sendButton" class="rounded px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white">Send</button>
+        </div>
+    </footer>
 
     <script src="client.js"></script>
 </body>
