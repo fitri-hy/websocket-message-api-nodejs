@@ -3,14 +3,10 @@ const http = require('http');
 const WebSocket = require('ws');
 const cors = require('cors');
 const url = require('url');
-const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ noServer: true });
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 app.use(cors({
     origin: '*',
@@ -21,7 +17,7 @@ const channels = {};
 const monitoringClients = [];
 
 app.get('/', (req, res) => {
-    res.render('monitor');
+    res.send('WebSocket server is running');
 });
 
 server.on('upgrade', (request, socket, head) => {
@@ -77,7 +73,4 @@ wss.on('connection', (ws, req) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+module.exports = app;
