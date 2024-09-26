@@ -1,13 +1,13 @@
 const express = require('express');
 const http = require('http');
-const path = require('path');
 const WebSocket = require('ws');
 const cors = require('cors');
 const url = require('url');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ noServer: true });
+const wss = new WebSocket.Server({ server });
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -22,12 +22,6 @@ const monitoringClients = [];
 
 app.get('/', (req, res) => {
     res.render('monitor');
-});
-
-server.on('upgrade', (request, socket, head) => {
-    wss.handleUpgrade(request, socket, head, (ws) => {
-        wss.emit('connection', ws, request);
-    });
 });
 
 wss.on('connection', (ws, req) => {
@@ -77,4 +71,7 @@ wss.on('connection', (ws, req) => {
     });
 });
 
-module.exports = server;
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

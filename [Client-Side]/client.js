@@ -1,5 +1,5 @@
 const channel = 'myChannel';
-const ws = new WebSocket(`wss://websocket-message-api-nodejs.vercel.app/api?channels=${channel}`);
+const ws = new WebSocket(`ws://localhost:3000/api?channels=${channel}`);
 
 const messagesDiv = document.getElementById('messages');
 const messageInput = document.getElementById('messageInput');
