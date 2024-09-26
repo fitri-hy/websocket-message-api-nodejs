@@ -8,6 +8,9 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ noServer: true });
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST'],
