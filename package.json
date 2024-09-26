@@ -1,8 +1,16 @@
 {
+  "name": "websocket-message",
+  "version": "1.0.0",
+  "main": "app.js",
   "dependencies": {
     "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "ws": "^8.18.0"
-  }
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "I-As Dev",
+  "license": "MIT"
 }
