@@ -14,7 +14,7 @@
 	</div>
 	<div id="messages" class="flex flex-col gap-2 px-4 pb-4 pt-20 h-screen overflow-y-auto"></div>
 	<script>
-		const ws = new WebSocket('ws://localhost:3000/?monitor=true');
+		const ws = new WebSocket('ws://websocket-message-api-nodejs.vercel.app/?monitor=true');
 
 		const messagesDiv = document.getElementById('messages');
 
