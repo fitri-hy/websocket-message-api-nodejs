@@ -73,4 +73,4 @@ wss.on('connection', (ws, req) => {
     });
 });
 
-module.exports = app;
+module.exports = server;
