@@ -17,7 +17,7 @@ const channels = {};
 const monitoringClients = [];
 
 app.get('/', (req, res) => {
-    res.send('WebSocket server is running');
+    res.render('monitor');
 });
 
 server.on('upgrade', (request, socket, head) => {
